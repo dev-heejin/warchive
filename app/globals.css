@@ -1,26 +1,65 @@
-@import "tailwindcss";
+/* app/globals.css — Minimal for App Router + Tailwind v4 */
+@import 'tailwindcss';
+@import 'tw-animate-css';
 
+/* 1) Typography & base rendering */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light dark;
+}
+html {
+  -webkit-text-size-adjust: 100%;
+}
+body {
+  min-height: 100dvh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 2) Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid #3b82f6; /* Tailwind blue-500 */
+  outline-offset: 2px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 3) Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* 4) Media defaults (CLS 방지 + 3:4 비율 헬퍼) */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.wine-media {
+  /* 카드 썸네일에 붙여 쓰는 최소 헬퍼 */
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+}
+
+/* 5) Scrollbar & selection tweaks */
+* {
+  scrollbar-width: thin;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 8px;
+}
+::selection {
+  background: rgba(0, 0, 0, 0.08);
 }
