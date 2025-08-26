@@ -3,9 +3,8 @@
 @import 'tw-animate-css';
 
 /* 1) Typography & base rendering */
-:root {
-  color-scheme: light dark;
-}
+/*:root {*/
+/*}*/
 html {
   -webkit-text-size-adjust: 100%;
 }
