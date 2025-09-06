@@ -1,4 +1,3 @@
-// eslint.config.mjs
 import js from '@eslint/js';
 import nextPlugin from '@next/eslint-plugin-next';
 import prettierConfig from 'eslint-config-prettier';
@@ -8,7 +7,7 @@ import perfectionist from 'eslint-plugin-perfectionist';
 import prettierPlugin from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import tseslint from 'typescript-eslint';
+import * as tseslint from 'typescript-eslint';
 
 export default [
   // 무시할 경로
@@ -99,6 +98,13 @@ export default [
   {
     plugins: { prettier: prettierPlugin },
     rules: { 'prettier/prettier': 'error' },
+  },
+
+  {
+    files: ['scripts/**/*.{ts,tsx}'],
+    rules: {
+      'no-console': 'off', // scripts 폴더에서는 console 허용
+    },
   },
 
   // 마지막: 충돌 제거용 config (그대로 유지)

@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 
 import { ReactNode } from 'react';
 
-import { Footer, Header } from './_components';
 import { Providers } from './providers';
 import './globals.css';
 
@@ -20,11 +19,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen w-full">
         <Providers>
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <Header />
-            {children}
-            <Footer />
-          </div>
+          <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">{children}</div>
         </Providers>
       </body>
     </html>
