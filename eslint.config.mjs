@@ -24,55 +24,22 @@ export default [
     ],
   },
 
-  // eslint:recommended
+  // 기본 설정들
   js.configs.recommended,
-
-  // typescript-eslint recommended
   ...tseslint.configs.recommended,
 
-  // react recommended
-  {
-    plugins: { react },
-    rules: { ...react.configs.recommended.rules },
-    settings: { react: { version: 'detect' } },
-  },
-
-  // next/core-web-vitals
-  {
-    plugins: { '@next/next': nextPlugin },
-    rules: { ...nextPlugin.configs['core-web-vitals'].rules },
-  },
-
-  // import recommended
-  {
-    plugins: { import: importPlugin },
-    rules: { ...importPlugin.configs.recommended.rules },
-    settings: { 'import/resolver': { node: true, typescript: true } },
-  },
-
-  // jsx-a11y recommended
-  {
-    plugins: { 'jsx-a11y': jsxA11y },
-    rules: { ...jsxA11y.configs.recommended.rules },
-  },
-
-  // perfectionist recommended-natural
-  {
-    plugins: { perfectionist },
-    rules: { ...perfectionist.configs['recommended-natural'].rules },
-  },
-
-  // react-hooks plugin
-  {
-    plugins: { 'react-hooks': reactHooks },
-    rules: {
-      'react-hooks/exhaustive-deps': 'off',
-      'react-hooks/rules-of-hooks': 'error',
-    },
-  },
-  // 프로젝트 커스텀 룰
+  // 메인 설정
   {
     files: ['**/*.{ts,tsx,js,jsx}'],
+    plugins: {
+      react,
+      '@next/next': nextPlugin,
+      import: importPlugin,
+      'jsx-a11y': jsxA11y,
+      perfectionist,
+      'react-hooks': reactHooks,
+      prettier: prettierPlugin,
+    },
     languageOptions: {
       globals: {
         JSX: true,
@@ -81,32 +48,66 @@ export default [
         React: true,
       },
       parser: tseslint.parser,
-      parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
+      parserOptions: {
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+      },
+    },
+    settings: {
+      react: { version: 'detect' },
+      'import/resolver': {
+        node: true,
+        typescript: {
+          alwaysTryTypes: true,
+          project: './tsconfig.json',
+        },
+      },
     },
     rules: {
-      '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-unused-vars': 'error',
-      'import/export': 'off',
-      'no-console': ['error', { allow: ['warn', 'error'] }],
-      'perfectionist/sort-jsx-props': 'warn',
-      'prettier/prettier': 'error',
+      // React & JSX
+      ...react.configs.recommended.rules,
       'react/jsx-uses-react': 'error',
       'react/jsx-uses-vars': 'error',
+
+      // Next.js
+      ...nextPlugin.configs['core-web-vitals'].rules,
+
+      // Import
+      ...importPlugin.configs.recommended.rules,
+      'import/export': 'off',
+
+      // 접근성 (필요한 것만 끄기)
+      ...jsxA11y.configs.recommended.rules,
+      'jsx-a11y/no-static-element-interactions': 'off',
+      'jsx-a11y/click-events-have-key-events': 'off',
+      'jsx-a11y/no-noninteractive-element-interactions': 'off',
+
+      // Perfectionist
+      ...perfectionist.configs['recommended-natural'].rules,
+      'perfectionist/sort-jsx-props': 'warn',
+
+      // React Hooks
+      'react-hooks/rules-of-hooks': 'error',
+      'react-hooks/exhaustive-deps': 'off',
+
+      // TypeScript
+      '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-unused-vars': 'error',
+
+      // 기타
+      'no-console': ['error', { allow: ['warn', 'error'] }],
+      'prettier/prettier': 'error',
     },
   },
-  // prettier 플러그인 등록 + 룰 활성화
-  {
-    plugins: { prettier: prettierPlugin },
-    rules: { 'prettier/prettier': 'error' },
-  },
 
+  // Scripts 폴더는 console 허용
   {
     files: ['scripts/**/*.{ts,tsx}'],
     rules: {
-      'no-console': 'off', // scripts 폴더에서는 console 허용
+      'no-console': 'off',
     },
   },
 
-  // 마지막: 충돌 제거용 config (그대로 유지)
+  // Prettier 충돌 제거 (마지막에)
   prettierConfig,
 ];

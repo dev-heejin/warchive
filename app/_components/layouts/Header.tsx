@@ -1,40 +1,39 @@
 'use client';
-import { SearchIcon } from 'lucide-react';
-import { useState } from 'react';
 
-import { LogoIconVer2 } from '@/app/_components';
+import { LogoIcon } from '@/app/_components/common';
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { useAuth } from '@/contexts/AuthContext';
+import { useModal } from '@/contexts/ModalContext';
 
 export default function Header() {
-  const [search, setSearch] = useState<string>('');
+  const { signOut, user } = useAuth();
+  const { openModal } = useModal();
 
-  const handleKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      handleSearch();
+  const handleLoginModal = async () => {
+    if (user) {
+      return await signOut();
     }
-  };
-
-  const handleSearch = () => {
-    //@TODO react-query search & router push to query page
+    openModal('login');
   };
 
   return (
-    <header className="bg-background/80 sticky top-0 z-40 border-b backdrop-blur">
-      <div className="flex h-14 items-center justify-between px-2 sm:px-6">
-        <LogoIconVer2 colorClass="text-rose-800" height={30} width={30} />
-        <form className="flex w-full max-w-sm items-center gap-2">
-          <Input
-            onChange={(e) => setSearch(e.target.value)}
-            onKeyDown={handleKeydown}
-            type="text"
-            value={search}
-          />
-          <Button onClick={handleSearch}>
-            <SearchIcon />
-          </Button>
-        </form>
+    <header className={'relative bg-white/80 backdrop-blur-md border-b border-gray-300'}>
+      <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-12 sm:h-14 md:h-16">
+          <div className="flex items-center space-x-2 sm:space-x-4">
+            <div className="flex-shrink-0">
+              <div className="w-5 h-5 sm:w-6 sm:h-6 flex items-center justify-center">
+                <LogoIcon />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center">
+            <Button className="text-sm sm:text-base text-gray-600" onClick={handleLoginModal}>
+              {user ? '로그아웃' : '로그인'}
+            </Button>
+          </div>
+        </div>
       </div>
     </header>
   );

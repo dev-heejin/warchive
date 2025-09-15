@@ -62,3 +62,65 @@ svg {
 ::selection {
   background: rgba(0, 0, 0, 0.08);
 }
+
+@theme {
+  --color-burgundy-50: #fdf2f2;
+  --color-burgundy-100: #fce4e4;
+  --color-burgundy-200: #fecaca;
+  --color-burgundy-300: #fca5a5;
+  --color-burgundy-400: #f87171;
+  --color-burgundy-500: #800020;
+  --color-burgundy-600: #6b0019;
+  --color-burgundy-700: #590016;
+  --color-burgundy-800: #470013;
+  --color-burgundy-900: #3a0010;
+  --color-burgundy-950: #22000a;
+
+  --color-crimson-50: #fef2f2;
+  --color-crimson-100: #fee2e2;
+  --color-crimson-200: #fecaca;
+  --color-crimson-300: #fca5a5;
+  --color-crimson-400: #f87171;
+  --color-crimson-500: #dc143c;
+  --color-crimson-600: #b91c3c;
+  --color-crimson-700: #991b33;
+  --color-crimson-800: #7f1d2d;
+  --color-crimson-900: #701a28;
+  --color-crimson-950: #450a16;
+
+  --color-grape-50: #faf5ff;
+  --color-grape-100: #f3e8ff;
+  --color-grape-200: #e9d5ff;
+  --color-grape-300: #d8b4fe;
+  --color-grape-400: #c084fc;
+  --color-grape-500: #6b2c91;
+  --color-grape-600: #5b2472;
+  --color-grape-700: #4a1d5c;
+  --color-grape-800: #3d1749;
+  --color-grape-900: #2e1137;
+  --color-grape-950: #1a0920;
+
+  --color-maroon-50: #fdf2f2;
+  --color-maroon-100: #fce4e4;
+  --color-maroon-200: #f9caca;
+  --color-maroon-300: #f5a5a5;
+  --color-maroon-400: #ef7171;
+  --color-maroon-500: #b03a2e;
+  --color-maroon-600: #962d22;
+  --color-maroon-700: #7d241c;
+  --color-maroon-800: #681f18;
+  --color-maroon-900: #571d17;
+  --color-maroon-950: #330f0c;
+
+  --color-wine-50: #fef7f7;
+  --color-wine-100: #fdeaea;
+  --color-wine-200: #fbd5d5;
+  --color-wine-300: #f7b2b2;
+  --color-wine-400: #f18787;
+  --color-wine-500: #722f37;
+  --color-wine-600: #651e24;
+  --color-wine-700: #56181d;
+  --color-wine-800: #4a1419;
+  --color-wine-900: #3f1217;
+  --color-wine-950: #260b0d;
+}
