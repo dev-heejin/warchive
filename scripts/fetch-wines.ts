@@ -71,9 +71,13 @@ async function fetchAllWines() {
 
     const allWines: Wine[] = [];
 
+    let currentId = 1;
+
     for (const category of WINE_CATEGORIES) {
       const wines = await fetchWinesByCategory(category);
-      allWines.push(...wines);
+      const winesWithId = wines.map((wine) => ({ ...wine, id: currentId++ }));
+
+      allWines.push(...winesWithId);
 
       await new Promise((resolve) => setTimeout(resolve, 500));
     }
