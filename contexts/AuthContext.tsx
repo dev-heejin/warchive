@@ -3,7 +3,7 @@
 import { User } from '@supabase/supabase-js';
 import { createContext, useContext, useEffect, useState } from 'react';
 
-import { createClient } from '@/lib/supabase/client';
+import { supabase } from '@/lib/supabase/client';
 
 interface AuthContextType {
   loading: boolean;
@@ -17,7 +17,6 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
-  const supabase = createClient();
 
   useEffect(() => {
     // 현재 세션 가져오기
